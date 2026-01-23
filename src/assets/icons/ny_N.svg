@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 250 255" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1.19048,0,0,1.06383,-11.9048,-8.1383)">
+        <ellipse cx="115" cy="127.5" rx="105" ry="117.5" style="fill:rgb(246,188,38);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-0.230751,83.8477)">
+        <g transform="matrix(200,0,0,200,197.448,115.625)">
+        </g>
+        <text x="53.014px" y="115.625px" style="font-family:'Helvetica-Bold', 'Helvetica';font-weight:700;font-size:200px;">N</text>
+    </g>
+</svg>
