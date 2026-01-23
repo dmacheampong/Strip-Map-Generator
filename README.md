@@ -1,3 +1,3 @@
-# React + TypeScript + Vite
+# Train Strip Map Generator
 
 Upload a train route to generate a stip map.
