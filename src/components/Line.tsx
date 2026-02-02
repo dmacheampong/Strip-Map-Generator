@@ -1,7 +1,7 @@
 import { Station } from "./Station";
 
 export type LineProps = {
-    name: string;
+    length?: number;
     color: string;
     bulletTextColor: string;
     stations: any;
@@ -9,15 +9,14 @@ export type LineProps = {
     strokeWidth: number;
 };
 
-export function Line({ name, color, stations, spaceBetween = 60, strokeWidth = 5, bulletTextColor = '#FFFFFF' }: LineProps) {
-    const length = (stations.length - 1) * spaceBetween;
+export function Line({ length, color, stations, spaceBetween, strokeWidth = 5, bulletTextColor = '#FFFFFF' }: LineProps) {
 
     return (
         <>
             <line x1={0} y1={0} x2={length} y2={0} stroke={color} strokeWidth={strokeWidth} />
 
             {stations.map((station: any, i: number) => (
-                <Station key={i} name={station.name} lineColor={color} x={spaceBetween * i} y={0} transfers={[]} isAccessible={false} branch={""} />
+                <Station key={station.id} name={station.name} lineColor={color} x={spaceBetween * i} y={0} transfers={station.transfers} isAccessible={station.isAccessible} />
             ))}
         </>
     );

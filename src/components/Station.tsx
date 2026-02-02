@@ -5,13 +5,12 @@ type StationProps = {
     name: string;
     transfers: Array<string>;
     isAccessible: boolean;
-    branch: string;
     lineColor: string
     x: number;
     y: number;
 };
 
-export function Station({ name, transfers, isAccessible, branch, lineColor, x, y }: StationProps) {
+export function Station({ name, transfers, isAccessible, lineColor, x, y }: StationProps) {
 
     const hasTransfers = (transfers.length > 0);
     const nameOffset = -16;

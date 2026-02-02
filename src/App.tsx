@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { useCSVReader } from 'react-papaparse';
-import viteLogo from '/vite.svg'
+import logo from '/logo.svg'
 import './App.css'
-import StripMap from './components/StripMap';
+import { StripMap } from './components/StripMap';
 
 function App() {
 
@@ -13,52 +13,38 @@ function App() {
   const [bullet, setBullet] = useState("");
   const [bulletTextColor, setBulletTextColor] = useState("#FFFFFF");
   const [color, setColor] = useState("#000000");
-  //const [line, setLine] = useState<Line>();
   const [stationsCSV, setStationsCSV] = useState();
-  const stations: any[] = [];
+  const [stationsDict, setStationsDict] = useState<Array<any>>([]);
 
-  function parseStationsCSV(stationsCSV: any): Array<any> {
+  function parseStationsCSV(stationsCSV: any) {
     const cols = stationsCSV[0] as Array<string>;
-
+    const stations = [];
     for (let i = 1; i < stationsCSV.length; i++) {
+      const station = {
+        id: i,
+        name: stationsCSV[i][cols.indexOf('station')],
+        borough: stationsCSV[i][cols.indexOf('borough')],
+        transfers: stationsCSV[i][cols.indexOf('transfers')] ? stationsCSV[i][cols.indexOf('transfers')].split("/") : [],
+        isAccessible: stationsCSV[i][cols.indexOf('is_accessible')] === 'yes'
+      };
 
-      const row: { [key: string]: any } = {};
-      for (let j = 0; j < cols.length; j++) {
-        const s: string = cols[j];
-        row[s] = stationsCSV[i][j];
-      }
-
-      stations.push(row);
+      stations.push(station);
     }
-    // let stationTransfers = [];
-
-    //if (stationsCSV[i][2]) {
-    //stationTransfers = stationsCSV[i][2].split("/");
-    //}
-
-    //const isAccessible = (stationsCSV[i][3] == 'yes');
-    //const station = new Station(stationName, stationBorough, stationTransfers, isAccessible);
-    //stations.push(station);
-
-    return stations;
+    console.log(stations);
+    setStationsDict(stations);
   }
 
   function handleGenerate(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    const stations = parseStationsCSV(stationsCSV);
-    console.log(stations);
-    // const route = new Line(name, bullet, bulletTextColor, color, stations);
-    //setLine(route);
+    parseStationsCSV(stationsCSV);
   }
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
+        <img src={logo} className="logo" alt="Logo" />
       </div>
-      <h1>Strip Map Maker</h1>
+      <h1>Subway Strip Map Maker</h1>
       <div className="card">
         <form onSubmit={handleGenerate}>
           <label>Line Name: { }
@@ -113,7 +99,7 @@ function App() {
         </form>
         <br />
         <div>
-          {stationsCSV && <StripMap name={name} bulletText={bullet} bulletTextColor={bulletTextColor} color={color} stationsDict={stations} />}
+          {stationsDict && <StripMap name={name} bulletText={bullet} bulletTextColor={bulletTextColor} color={color} stationsDict={stationsDict} />}
         </div>
       </div>
     </>
