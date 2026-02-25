@@ -13,8 +13,8 @@ const firebaseConfig = {
   projectId: "strip-map-generator",
   storageBucket: "strip-map-generator.firebasestorage.app",
   messagingSenderId: "220901947382",
-  appId: "1:220901947382:web:dd7054d7f13185dc2ab9d7",
-  measurementId: "G-BWSDGS5HJC"
+  appId: "1:220901947382:web:8d809a0629e08fba2ab9d7",
+  measurementId: "G-K8C5HBERT6"
 };
 
 // Initialize Firebase
