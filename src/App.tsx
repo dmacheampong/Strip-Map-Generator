@@ -50,7 +50,7 @@ function App() {
 
         const context = canvas.getContext('2d');
         context?.drawImage(image, 0, 0);
-        const imgURL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+        //const imgURL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
 
         const a = document.createElement("a");
         a.target = "_blank";
