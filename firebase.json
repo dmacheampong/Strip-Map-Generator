@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "site": "stripmapgenerator",
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",

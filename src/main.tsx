@@ -1,12 +1,13 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
+/*
 const firebaseConfig = {
   apiKey: "AIzaSyDeGUVeTh6R74uMDD08zeULDpEvsulSU0E",
   authDomain: "strip-map-generator.firebaseapp.com",
@@ -16,10 +17,10 @@ const firebaseConfig = {
   appId: "1:220901947382:web:8d809a0629e08fba2ab9d7",
   measurementId: "G-K8C5HBERT6"
 };
-
+*/
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const app = initializeApp(firebaseConfig);
+//const analytics = getAnalytics(app);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,7 +1,6 @@
 
 import { Line } from "./Line";
 import { Bullet } from "./Bullet";
-import { transform } from "@svgr/core";
 
 export type StripMapProps = {
   ref: React.Ref<SVGSVGElement>;

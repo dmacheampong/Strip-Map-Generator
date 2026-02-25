@@ -9,7 +9,7 @@ export type LineProps = {
     strokeWidth: number;
 };
 
-export function Line({ length, color, stations, spaceBetween, strokeWidth = 5, bulletTextColor = '#FFFFFF' }: LineProps) {
+export function Line({ length, color, stations, spaceBetween, strokeWidth = 5 }: LineProps) {
 
     return (
         <>
