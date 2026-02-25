@@ -72,11 +72,12 @@ function App() {
 
   return (
     <>
-      <h1>NYC Subway Strip Map Maker</h1>
       <div>
         <img src={logo} className="logo" alt="Logo" />
       </div>
-      <div className="card">
+      <h1>NYC Subway Strip Map Maker</h1>
+
+      <div>
         <form onSubmit={handleGenerate}>
           <label>Line Name: { }
             <input type="text" value={name} onChange={e => setName(e.target.value)} />
