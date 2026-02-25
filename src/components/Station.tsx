@@ -21,7 +21,7 @@ export function Station({ name, transfers, isAccessible, lineColor, x, y }: Stat
             <circle cx={x} cy={y} r={10} fill={hasTransfers ? '#FFFFFF' : lineColor} stroke={hasTransfers ? '#000000' : lineColor} strokeWidth={3} />
             {isAccessible && <image href={(hasTransfers) ? ada_black : ada_white} x={x} y={y} transform={`translate(${-7} ${-9})`} width={16} height={16} />}
 
-            <text x={x} y={nameOffset} transform={`rotate(-45, ${x}, ${nameOffset})`}>{name}</text>
+            <text x={x} y={nameOffset} transform={`rotate(-45, ${x}, ${nameOffset})`} fontFamily="Helvetica">{name}</text>
             {transfers.map((transfer, i) => (
                 <image key={name + '_' + transfer} href={ny_bullets.get(transfer)} x={x} y={transfersOffset * (i + 1)} transform={`translate(${-12} ${-12})`} width={25} height={25} />
             ))}

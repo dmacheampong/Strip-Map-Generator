@@ -11,7 +11,7 @@ export function Bullet({ x, y, color, text, textColor, font = 'Helvetica' }: Bul
     return (
         <g className="bullet">
             <circle cx={x} cy={y} r='36' fill={color} />
-            <text x={x} y={y} textAnchor="middle" alignmentBaseline="central" fontSize={72 / text.length} fontFamily={font} fontWeight='bold' fill={textColor} >{text}</text>
+            <text x={x} y={y} textAnchor="middle" alignmentBaseline="central" fontSize={60 / text.length} fontFamily={font} fontWeight='bold' fill={textColor} >{text}</text>
         </g>
     );
 };

@@ -1,12 +1,13 @@
-import { useState, type FormEvent } from 'react'
+
+
+import { useRef, useState, type FormEvent } from 'react';
 import { useCSVReader } from 'react-papaparse';
-import logo from '/logo.svg'
-import './App.css'
+import logo from '/logo.svg';
+import './App.css';
 import { StripMap } from './components/StripMap';
 
 function App() {
-
-
+  const svgRef = useRef<SVGSVGElement>(null);
   const { CSVReader } = useCSVReader();
 
   const [name, setName] = useState("");
@@ -15,6 +16,7 @@ function App() {
   const [color, setColor] = useState("#000000");
   const [stationsCSV, setStationsCSV] = useState();
   const [stationsDict, setStationsDict] = useState<Array<any>>([]);
+  const [generated, setGenerated] = useState(false);
 
   function parseStationsCSV(stationsCSV: any) {
     const cols = stationsCSV[0] as Array<string>;
@@ -30,21 +32,50 @@ function App() {
 
       stations.push(station);
     }
-    console.log(stations);
     setStationsDict(stations);
+  }
+
+  function downloadMap() {
+    if (svgRef.current) {
+      const svgData = new XMLSerializer().serializeToString(svgRef.current);
+      const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+      const svgURL = URL.createObjectURL(svgBlob);
+      const image = new Image();
+
+      image.src = svgURL;
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        const context = canvas.getContext('2d');
+        context?.drawImage(image, 0, 0);
+        const imgURL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+
+        const a = document.createElement("a");
+        a.target = "_blank";
+        a.href = svgURL;
+        a.download = "strip-map.svg";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+    }
   }
 
   function handleGenerate(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     parseStationsCSV(stationsCSV);
+    setGenerated(true);
   }
 
   return (
     <>
+      <h1>NYC Subway Strip Map Maker</h1>
       <div>
         <img src={logo} className="logo" alt="Logo" />
       </div>
-      <h1>Subway Strip Map Maker</h1>
       <div className="card">
         <form onSubmit={handleGenerate}>
           <label>Line Name: { }
@@ -70,7 +101,7 @@ function App() {
           </label>
           <br />
           <br />
-          <label>Stations:
+          <label>
             <CSVReader onUploadAccepted={(results: any) => {
               setStationsCSV(results.data);
             }}>
@@ -78,12 +109,27 @@ function App() {
                 <>
                   <div>
                     <button type="button" {...getRootProps()}>
-                      Browse file
+                      Upload Stations CSV
                     </button>
+                    <pre style={{
+                      whiteSpace: 'pre',
+                      overflowX: 'auto',
+                      margin: 0,
+                    }}>
+                      Example format:<br />
+                      | borough  | station   | transfers | is_accessible |<br />
+                      +----------+-----------+-----------+---------------+<br />
+                      | Queens   | First St  | 1/2/3     | yes           |<br />
+                      +----------+-----------+-----------+---------------+<br />
+                      | Queens   | Second St |           | no            |<br />
+                      +----------+-----------+-----------+---------------+<br />
+                      | Brooklyn | Third St  | A/C/E     | yes           |<br />
+                      +----------+-----------+-----------+---------------+<br />
+                    </pre>
                     <div>
-                      {acceptedFile && acceptedFile.name}
+                      {acceptedFile && "File: " + acceptedFile.name}
                     </div>
-                    <button {...getRemoveFileProps()}>
+                    <button type="button" {...getRemoveFileProps()}>
                       Remove
                     </button>
                   </div>
@@ -98,9 +144,19 @@ function App() {
           </button>
         </form>
         <br />
-        <div>
-          {stationsDict && <StripMap name={name} bulletText={bullet} bulletTextColor={bulletTextColor} color={color} stationsDict={stationsDict} />}
+        {generated && <div>
+          <div>
+            <StripMap ref={svgRef} name={name} bulletText={bullet} bulletTextColor={bulletTextColor} color={color} stationsDict={stationsDict} />
+            <div>
+            </div>
+          </div>
+          <div>
+            <button onClick={downloadMap}>
+              Download Strip Map
+            </button>
+          </div>
         </div>
+        }
       </div>
     </>
   )

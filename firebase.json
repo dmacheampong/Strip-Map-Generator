@@ -1,0 +1,13 @@
+{
+  "apphosting": {
+    "backendId": "strip-map-generator-backend",
+    "rootDir": "",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "firebase-debug.log",
+      "firebase-debug.*.log",
+      "functions"
+    ]
+  }
+}

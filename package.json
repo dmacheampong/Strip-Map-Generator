@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^12.9.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-full-screen": "^1.1.1",
+    "react-medium-image-zoom": "^5.4.0",
     "react-papaparse": "^4.4.0",
     "vite-plugin-svgr": "^4.5.0"
   },

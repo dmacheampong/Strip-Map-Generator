@@ -5,12 +5,12 @@
         <rect x="0" y="177" width="395" height="23" style="fill:rgb(230,26,26);"/>
     </g>
     <g transform="matrix(1.01205,0,0,1.02439,26,-11.0244)">
-        <ellipse cx="41.5" cy="206" rx="41.5" ry="41" style="fill:rgb(230,26,26);stroke:rgb(230,26,26);stroke-width:7.86px;"/>
+        <ellipse cx="41.5" cy="206" rx="41.5" ry="41" style="fill:rgb(230,26,26);"/>
     </g>
     <g transform="matrix(1.01205,0,0,1.02439,158,-11.0244)">
         <ellipse cx="41.5" cy="206" rx="41.5" ry="41" style="fill:white;stroke:black;stroke-width:7.86px;"/>
     </g>
     <g transform="matrix(1.01205,0,0,1.02439,290,-11.0244)">
-        <ellipse cx="41.5" cy="206" rx="41.5" ry="41" style="fill:rgb(230,26,26);stroke:rgb(230,26,26);stroke-width:7.86px;"/>
+        <ellipse cx="41.5" cy="206" rx="41.5" ry="41" style="fill:rgb(230,26,26);"/>
     </g>
 </svg>
